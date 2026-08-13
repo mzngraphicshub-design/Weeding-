@@ -1,1 +1,411 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Royal Wedding Invitation 💍</title>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Hind Siliguri', sans-serif;
+    }
 
+    body {
+      background: radial-gradient(circle at center, #3c0911 0%, #1a0306 70%, #0d0103 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      color: #fff8f0;
+      overflow-x: hidden;
+    }
+
+    /* Royal Card Container */
+    .wedding-card {
+      width: 100%;
+      max-width: 480px;
+      background: rgba(35, 6, 12, 0.85);
+      backdrop-filter: blur(15px);
+      border-radius: 24px;
+      padding: 32px 24px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 0 15px rgba(212, 175, 55, 0.2);
+      position: relative;
+      border: 1.5px solid #d4af37;
+      text-align: center;
+    }
+
+    /* Gold Ornamental Borders */
+    .card-border-frame {
+      border: 1px dashed rgba(212, 175, 55, 0.4);
+      border-radius: 18px;
+      padding: 20px 15px;
+    }
+
+    /* Progress Dots */
+    .step-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(212, 175, 55, 0.3);
+      transition: all 0.3s;
+    }
+    .dot.active {
+      background: #d4af37;
+      box-shadow: 0 0 10px #d4af37;
+      transform: scale(1.2);
+    }
+
+    /* Step Card Sections */
+    .step-card {
+      display: none;
+      animation: fadeIn 0.6s ease forwards;
+    }
+    .step-card.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Typography */
+    .bismillah {
+      font-size: 16px;
+      color: #d4af37;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .wedding-title {
+      font-family: 'Cinzel', serif;
+      font-size: 26px;
+      background: linear-gradient(45deg, #fef08a, #d4af37, #fef08a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    .couple-names {
+      font-family: 'Cinzel', serif;
+      font-size: 28px;
+      color: #fff;
+      margin: 15px 0;
+      text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    }
+
+    .couple-names span {
+      color: #d4af37;
+      font-size: 22px;
+    }
+
+    p {
+      font-size: 14.5px;
+      color: #f3e8ee;
+      line-height: 1.7;
+      margin-bottom: 15px;
+    }
+
+    /* Photo Frame */
+    .photo-frame {
+      width: 100%;
+      height: 200px;
+      border-radius: 14px;
+      overflow: hidden;
+      margin: 15px 0;
+      border: 2px solid #d4af37;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    }
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Schedule List */
+    .schedule-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 15px 0;
+      text-align: left;
+    }
+    .schedule-item {
+      background: rgba(212, 175, 55, 0.1);
+      border-left: 3px solid #d4af37;
+      padding: 12px 15px;
+      border-radius: 0 12px 12px 0;
+    }
+    .schedule-item h4 {
+      color: #fef08a;
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+    .schedule-item p {
+      margin: 0;
+      font-size: 13px;
+      color: #ebd9e6;
+    }
+
+    /* Buttons */
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .btn {
+      padding: 11px 20px;
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 20px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, #d4af37, #b8860b);
+      color: #1a0306;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+      flex: 1;
+    }
+    .btn-gold:hover { transform: translateY(-2px); }
+
+    .btn-outline {
+      background: transparent;
+      color: #d4af37;
+      border: 1px solid #d4af37;
+      padding: 11px 16px;
+    }
+
+    .map-btn {
+      display: inline-block;
+      width: 100%;
+      padding: 12px;
+      background: #25d366;
+      color: white;
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: bold;
+      margin-top: 10px;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+    }
+
+    /* Petal Animation Canvas */
+    #petalCanvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 100;
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="petalCanvas"></canvas>
+
+  <div class="wedding-card">
+    <div class="card-border-frame">
+      
+      <!-- Dots Indicator -->
+      <div class="step-dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+
+      <!-- PART 1: Invitation Welcome -->
+      <div class="step-card active" id="step1">
+        <div class="bismillah">বিসমিল্লাহির রহমানির রহিম</div>
+        <h1 class="wedding-title">WEDDING INVITATION</h1>
+        <p style="margin-top: 10px;">পরিবারের অশেষ আনন্দ ও ভালোবাসার সাথে আপনাকে আমাদের শুভ বিবাহ উৎসবে সাদর আমন্ত্রণ জানাচ্ছি।</p>
+        
+        <div class="couple-names">
+          বর <span>&</span> কনে
+        </div>
+
+        <p style="font-size: 13px; color: #d4af37; margin-bottom: 25px;">শুভ বিবাহের শুভক্ষণে আপনার উপস্থিতি একান্ত কাম্য ✨</p>
+
+        <div class="nav-buttons">
+          <button class="btn btn-gold" onclick="nextStep()">আমন্ত্রণপত্র দেখুন ➔</button>
+        </div>
+      </div>
+
+      <!-- PART 2: Couple Intro -->
+      <div class="step-card" id="step2">
+        <h1 class="wedding-title">THE COUPLE</h1>
+        <p>নতুন পথচলায় দুটি হৃদয়ের বন্ধন এক সুতোয় বাঁধার এই বিশেষ মুহূর্ত।</p>
+
+        <div class="photo-frame">
+          <!-- পাত্র-পাত্রীর ছবি গিটহাবে দিয়ে couple.jpg নাম দিতে পারো -->
+          <img src="couple.jpg" alt="Wedding Couple" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?w=600'">
+        </div>
+
+        <div class="couple-names" style="font-size: 22px;">
+          আরিফ আহমেদ <span>❤️</span> সামিয়া ইসলাম
+        </div>
+        <p style="font-size: 13px; color: #e2e8f0;">(এখানে বর ও কনের নাম পরিবর্তন করে নিও)</p>
+
+        <div class="nav-buttons">
+          <button class="btn btn-outline" onclick="prevStep()">⬅ পেছনে</button>
+          <button class="btn btn-gold" onclick="nextStep()">অনুষ্ঠান সূচি ➔</button>
+        </div>
+      </div>
+
+      <!-- PART 3: Event Schedule -->
+      <div class="step-card" id="step3">
+        <h1 class="wedding-title">PROGRAM SCHEDULE</h1>
+        <p>বিবাহের সার্বিক আনন্দ অনুষ্ঠানগুলোর সময়সূচি:</p>
+
+        <div class="schedule-grid">
+          <div class="schedule-item">
+            <h4>🌼 গায়ে হলুদ</h4>
+            <p>তারিখ: ১৫ নভেম্বর, ২০২৬ • সন্ধ্যা ৭:০০ টা</p>
+          </div>
+          <div class="schedule-item">
+            <h4>💍 শুভ আক্‌দ ও বিবাহ</h4>
+            <p>তারিখ: ১৬ নভেম্বর, ২০২৬ • দুপুর ১:৩০ টা</p>
+          </div>
+          <div class="schedule-item">
+            <h4>🎉 ওয়ালিমাহ / সংবর্ধনা</h4>
+            <p>তারিখ: ১৭ নভেম্বর, ২০২৬ • রাত ৮:০০ টা</p>
+          </div>
+        </div>
+
+        <div class="nav-buttons">
+          <button class="btn btn-outline" onclick="prevStep()">⬅ পেছনে</button>
+          <button class="btn btn-gold" onclick="nextStep()">ভেন্যু ও স্থান ➔</button>
+        </div>
+      </div>
+
+      <!-- PART 4: Venue & Location -->
+      <div class="step-card" id="step4">
+        <h1 class="wedding-title">VENUE LOCATION</h1>
+        <p>আমাদের অনুষ্ঠান প্রাঙ্গণে আপনার উপস্থিতি প্রার্থনা করছি:</p>
+
+        <div style="background: rgba(212, 175, 55, 0.1); padding: 15px; border-radius: 12px; margin: 15px 0; border: 1px solid rgba(212, 175, 55, 0.3);">
+          <h3 style="color: #fef08a; margin-bottom: 5px;">গ্যান্ড প্যালেস কনভেনশন সেন্টার</h3>
+          <p style="font-size: 13px; margin: 0; color: #ddd;">রোড #১১, ধানমন্ডি, ঢাকা-১২০৯</p>
+        </div>
+
+        <!-- Google Maps Link Placeholder -->
+        <a href="https://maps.google.com" target="_blank" class="map-btn">📍 গুগল ম্যাপসে লোকেশন দেখুন</a>
+
+        <div class="nav-buttons">
+          <button class="btn btn-outline" onclick="prevStep()">⬅ পেছনে</button>
+          <button class="btn btn-gold" onclick="nextStep()">দোয়া ও শুভেচ্ছা ➔</button>
+        </div>
+      </div>
+
+      <!-- PART 5: RSVP & Blessings -->
+      <div class="step-card" id="step5">
+        <h1 class="wedding-title">YOUR BLESSINGS</h1>
+        <p>নবদম্পতির আগামীর সুন্দর জীবন ও সুখী ভবিষ্যতের জন্য আপনার মূল্যবান দোয়া ও ভালোবাসা কামনা করি।</p>
+
+        <div style="font-size: 40px; margin: 15px 0;">🤲 ✨ 💐 💍</div>
+
+        <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 20px;">
+          <button class="btn btn-gold" onclick="sendBlessing()" style="padding: 14px;">শুভকামনা জানাই & গোলাপ বর্ষণ 🌹</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    let currentStep = 1;
+    const totalSteps = 5;
+
+    function updateStep() {
+      document.querySelectorAll('.step-card').forEach(card => card.classList.remove('active'));
+      document.getElementById(`step${currentStep}`).classList.add('active');
+
+      // Update dots
+      document.querySelectorAll('.dot').forEach((dot, index) => {
+        if (index + 1 === currentStep) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    }
+
+    function nextStep() {
+      if (currentStep < totalSteps) {
+        currentStep++;
+        updateStep();
+      }
+    }
+
+    function prevStep() {
+      if (currentStep > 1) {
+        currentStep--;
+        updateStep();
+      }
+    }
+
+    function sendBlessing() {
+      triggerRosePetals();
+      alert("আপনার দোয়ার জন্য অসংখ্য ধন্যবাদ! শুভাকাঙ্ক্ষী হিসেবে আপনাকে পাশে পেয়ে আমরা আনন্দিত। 🌹✨");
+    }
+
+    // Rose Petal / Golden Sparkle Animation
+    const canvas = document.getElementById('petalCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let particles = [];
+
+    function triggerRosePetals() {
+      for (let i = 0; i < 100; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: -20,
+          vx: (Math.random() - 0.5) * 4,
+          vy: Math.random() * 3 + 2,
+          color: Math.random() > 0.4 ? '#e11d48' : '#d4af37',
+          size: Math.random() * 8 + 4,
+          life: 1
+        });
+      }
+    }
+
+    function animatePetals() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((p, index) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life -= 0.005;
+
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = Math.max(p.life, 0);
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalAlpha = 1;
+
+        if (p.y > canvas.height || p.life <= 0) particles.splice(index, 1);
+      });
+      requestAnimationFrame(animatePetals);
+    }
+    animatePetals();
+  </script>
+</body>
+</html>
